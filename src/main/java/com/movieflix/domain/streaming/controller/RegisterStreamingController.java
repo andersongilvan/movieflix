@@ -5,6 +5,7 @@ import com.movieflix.domain.streaming.DTO.StreamingRequest;
 import com.movieflix.domain.streaming.DTO.StreamingResponse;
 import com.movieflix.domain.streaming.mapper.StreamingMapper;
 import com.movieflix.domain.streaming.service.RegisterStreamingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class RegisterStreamingController {
     private RegisterStreamingService service;
 
     @PostMapping
-    public ResponseEntity<StreamingResponse> handler(@RequestBody StreamingRequest request) {
+    public ResponseEntity<StreamingResponse> handler(@Valid @RequestBody StreamingRequest request) {
 
         var streaming = StreamingMapper.toStreaming(request);
 

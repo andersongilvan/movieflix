@@ -1,4 +1,4 @@
-package com.movieflix.exceptions;
+package com.movieflix.exceptions.resourceNotFound;
 
 public class ResourceNorFoundException extends RuntimeException {
 
