@@ -3,21 +3,22 @@ package com.movieflix.domain.category.service;
 
 import com.movieflix.domain.category.entity.Category;
 import com.movieflix.domain.category.repository.CategoryRepository;
+import com.movieflix.exceptions.ResourceNorFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
-public class FindAllCategoriesService {
+public class FindCategoryByIdService {
 
     @Autowired
     private CategoryRepository repository;
 
-    public Page<Category> execute(Pageable pageable) {
-        return  repository.findAll(pageable);
+    public Category execute(Long id) {
+
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNorFoundException("This category not found"));
     }
 
 }

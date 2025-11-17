@@ -2,11 +2,11 @@ package com.movieflix.domain.category.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +20,9 @@ public class Category {
 
     @Column(length = 100, nullable = false)
     private String name;
+
+    public void update(String name) {
+        this.name = name;
+    }
 
 }
