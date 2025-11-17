@@ -6,6 +6,7 @@ import com.movieflix.domain.category.DTO.CategoryResponse;
 import com.movieflix.domain.category.entity.Category;
 import com.movieflix.domain.category.mapper.CategoryMapper;
 import com.movieflix.domain.category.service.RegisterCategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class RegisterCategoryController {
     private RegisterCategoryService service;
 
     @PostMapping
-    public ResponseEntity<CategoryResponse>  handler(@RequestBody CategoryRequest data) {
+    public ResponseEntity<CategoryResponse>  handler(@Valid @RequestBody CategoryRequest data) {
 
         var category = CategoryMapper.toCategory(data);
 

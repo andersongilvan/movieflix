@@ -1,4 +1,6 @@
 package com.movieflix.domain.category.DTO;
 
-public record CategoryRequest(String name) {
+import jakarta.validation.constraints.NotBlank;
+
+public record CategoryRequest(@NotBlank(message = "Required field") String name) {
 }
