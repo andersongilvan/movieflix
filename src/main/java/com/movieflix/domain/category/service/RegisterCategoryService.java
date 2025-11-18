@@ -16,7 +16,7 @@ public class RegisterCategoryService {
 
         var categoryWithNameDuplicated = repository.findByName(category.getName());
 
-        if (categoryWithNameDuplicated != null) {
+        if (categoryWithNameDuplicated.isPresent()) {
             throw new ResourceAlreadyExistException("This category already exist");
         }
 

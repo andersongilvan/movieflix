@@ -11,12 +11,17 @@ import org.springframework.stereotype.Service;
 public class FindStreamingByIdService {
 
     @Autowired
-    private StreamingRepository repository;
+    private StreamingRepository streamingRepository;
 
-    public Streaming execute(Long id) {
+    public Streaming execute(Long idStreaming) {
 
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNorFoundException("This streaming not found"));
+        var streamingOptional = this.streamingRepository.findById(idStreaming);
+
+        if (streamingOptional.isEmpty()) {
+            throw new ResourceNorFoundException("This streaming not found");
+        }
+
+        return streamingOptional.get();
     }
 
 }

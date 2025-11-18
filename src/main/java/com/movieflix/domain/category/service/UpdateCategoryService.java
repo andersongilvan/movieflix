@@ -12,17 +12,22 @@ import org.springframework.stereotype.Service;
 public class UpdateCategoryService {
 
     @Autowired
-    private CategoryRepository repository;
+    private CategoryRepository categoryRepository;
 
     @Transactional
-    public Category execute(Long id, Category data) {
+    public Category execute(Long idCategory, Category category) {
 
-       var category = repository.findById(id)
-               .orElseThrow(() -> new ResourceNorFoundException("This category not found"));
+        var categoryOptional = categoryRepository.findById(idCategory);
+        if (categoryOptional.isEmpty()) {
+            throw new ResourceNorFoundException("This category not found");
+        }
 
-       category.update(data.getName());
+        var categorySaved = categoryOptional.get();
 
-       return category;
+        categorySaved.setName(category.getName());
+
+        return categorySaved;
+
     }
 
 }

@@ -11,12 +11,17 @@ import org.springframework.stereotype.Service;
 public class FindCategoryByIdService {
 
     @Autowired
-    private CategoryRepository repository;
+    private CategoryRepository categoryRepository;
 
-    public Category execute(Long id) {
+    public Category execute(Long idCategory) {
 
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNorFoundException("This category not found"));
+        var categoryOptional = categoryRepository.findById(idCategory);
+
+        if (categoryOptional.isEmpty()) {
+            throw new ResourceNorFoundException("This category not found");
+        }
+
+        return categoryOptional.get();
     }
 
 }
