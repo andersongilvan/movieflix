@@ -1,5 +1,6 @@
 package com.movieflix.domain.movie.controller;
 
+
 import com.movieflix.domain.movie.dto.MovieResponse;
 import com.movieflix.domain.movie.mapper.MovieMapper;
 import com.movieflix.domain.movie.service.SearchMovieByTitleService;
