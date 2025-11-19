@@ -6,6 +6,8 @@ import com.movieflix.exceptions.resourceAlreadyExists.ResourceAlreadyExistExcept
 import com.movieflix.exceptions.resourceAlreadyExists.ResourceNotFoundExceptionDto;
 import com.movieflix.exceptions.resourceNotFound.ResourceAlreadyExistExceptionDto;
 import com.movieflix.exceptions.resourceNotFound.ResourceNorFoundException;
+import com.movieflix.exceptions.usernameOrPasswordInvalidException.UsernameOrPasswordInvalidException;
+import com.movieflix.exceptions.usernameOrPasswordInvalidException.UsernameOrPasswordInvalidExceptionDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestControllerAdvice
-public class ErrorHandler {
+public class ApplicationControllerAdvice {
 
     @ExceptionHandler(ResourceNorFoundException.class)
     public ResponseEntity<ResourceNotFoundExceptionDto> resourceNotFoundException
@@ -36,14 +38,21 @@ public class ErrorHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<MethodArgumentNotValidExceptionDto>> methodArgumentNotValidException
             (MethodArgumentNotValidException e) {
-            List<MethodArgumentNotValidExceptionDto> errorsList = new ArrayList<>();
+        List<MethodArgumentNotValidExceptionDto> errorsList = new ArrayList<>();
 
-            var errors = e.getFieldErrors();
+        var errors = e.getFieldErrors();
 
-            errors.forEach(err -> errorsList.add( new MethodArgumentNotValidExceptionDto
-                    (err.getField(), err.getDefaultMessage())));
+        errors.forEach(err -> errorsList.add(new MethodArgumentNotValidExceptionDto
+                (err.getField(), err.getDefaultMessage())));
 
-            return ResponseEntity.badRequest().body(errorsList);
+        return ResponseEntity.badRequest().body(errorsList);
     }
+
+    @ExceptionHandler(UsernameOrPasswordInvalidException.class)
+    public ResponseEntity<UsernameOrPasswordInvalidExceptionDTO> usernameOrPasswordInvalidExceptionDTOResponseEntity
+            (UsernameOrPasswordInvalidException e) {
+        return ResponseEntity.badRequest().body(new UsernameOrPasswordInvalidExceptionDTO(e.getMessage()));
+    }
+
 
 }

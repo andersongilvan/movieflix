@@ -26,7 +26,7 @@ public class RegisterUserController {
 
         var result = this.registerUserService.execute(user);
 
-        return ResponseEntity.ok(UserMapper.toUserResponse(user));
+        return ResponseEntity.ok(UserMapper.toUserResponse(result));
 
     }
 
