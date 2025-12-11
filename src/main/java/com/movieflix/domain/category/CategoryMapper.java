@@ -1,9 +1,9 @@
-package com.movieflix.domain.movie;
+package com.movieflix.domain.category;
 
 
-import com.movieflix.domain.movie.entity.Category;
-import com.movieflix.domain.movie.request.CategoryRequest;
-import com.movieflix.domain.movie.response.CategoryResponse;
+import com.movieflix.domain.category.entity.Category;
+import com.movieflix.domain.category.request.CategoryRequest;
+import com.movieflix.domain.category.response.CategoryResponse;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

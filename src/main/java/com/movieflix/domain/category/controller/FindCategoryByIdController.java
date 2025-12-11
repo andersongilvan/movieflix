@@ -1,9 +1,9 @@
-package com.movieflix.domain.movie.controller;
+package com.movieflix.domain.category.controller;
 
 
-import com.movieflix.domain.movie.CategoryMapper;
-import com.movieflix.domain.movie.response.CategoryResponse;
-import com.movieflix.domain.movie.services.FindCategoryByIdService;
+import com.movieflix.domain.category.CategoryMapper;
+import com.movieflix.domain.category.response.CategoryResponse;
+import com.movieflix.domain.category.services.FindCategoryByIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

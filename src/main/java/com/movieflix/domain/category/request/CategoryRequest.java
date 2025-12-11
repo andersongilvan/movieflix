@@ -1,4 +1,4 @@
-package com.movieflix.domain.movie.request;
+package com.movieflix.domain.category.request;
 
 import org.hibernate.validator.constraints.NotBlank;
 

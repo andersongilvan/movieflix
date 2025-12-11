@@ -1,8 +1,6 @@
-package com.movieflix.domain.movie.response;
+package com.movieflix.domain.category.response;
 
 import lombok.Builder;
-
-import java.util.UUID;
 
 @Builder
 public record CategoryResponse(Long id, String title) {

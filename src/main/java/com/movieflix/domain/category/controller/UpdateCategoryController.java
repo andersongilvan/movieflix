@@ -1,10 +1,10 @@
-package com.movieflix.domain.movie.controller;
+package com.movieflix.domain.category.controller;
 
 
-import com.movieflix.domain.movie.CategoryMapper;
-import com.movieflix.domain.movie.request.CategoryRequest;
-import com.movieflix.domain.movie.response.CategoryResponse;
-import com.movieflix.domain.movie.services.UpdateCategoryService;
+import com.movieflix.domain.category.CategoryMapper;
+import com.movieflix.domain.category.request.CategoryRequest;
+import com.movieflix.domain.category.response.CategoryResponse;
+import com.movieflix.domain.category.services.UpdateCategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.movieflix.domain.movie.entity;
+package com.movieflix.domain.category.entity;
 
 
 import jakarta.persistence.*;

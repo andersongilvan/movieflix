@@ -1,9 +1,9 @@
-package com.movieflix.domain.movie.controller;
+package com.movieflix.domain.category.controller;
 
 
-import com.movieflix.domain.movie.CategoryMapper;
-import com.movieflix.domain.movie.response.CategoryResponse;
-import com.movieflix.domain.movie.services.FindAllCategoriesService;
+import com.movieflix.domain.category.CategoryMapper;
+import com.movieflix.domain.category.response.CategoryResponse;
+import com.movieflix.domain.category.services.FindAllCategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

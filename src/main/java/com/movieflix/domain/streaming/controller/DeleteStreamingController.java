@@ -1,7 +1,7 @@
-package com.movieflix.domain.category.controller;
+package com.movieflix.domain.streaming.controller;
 
 
-import com.movieflix.domain.category.services.DeleteCategoryService;
+import com.movieflix.domain.streaming.services.DeleteStreamingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movieflix/category")
-public class DeleteCategoryController {
+@RequestMapping("/movieflix/streaming")
+public class DeleteStreamingController {
 
     @Autowired
-    private DeleteCategoryService deleteCategoryService;
+    private DeleteStreamingService deleteStreamingService;
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> handler(@PathVariable Long id) {
-        deleteCategoryService.deleteCategory(id);
+
+        deleteStreamingService.delete(id);
 
         return ResponseEntity.noContent().build();
+
     }
 
 }
