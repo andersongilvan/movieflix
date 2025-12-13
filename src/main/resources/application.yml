@@ -17,3 +17,6 @@ spring:
   flyway:
 
     enabled: true
+
+  jwt:
+    secretKey: ",ye.*+r*?JEebfL-m8W5{6]5gXbMcdSYRVC}V(gE5@s0^M2Ff&Qdtd6F[~Fsa&I"
