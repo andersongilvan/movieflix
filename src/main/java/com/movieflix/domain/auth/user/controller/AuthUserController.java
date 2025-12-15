@@ -21,6 +21,7 @@ public class AuthUserController {
     @PostMapping
     public ResponseEntity<String> handler(@Valid @RequestBody AuthUserRequest authUserRequest) {
 
+        System.out.println(authUserService.auth(authUserRequest));
         return ResponseEntity.ok(authUserService.auth(authUserRequest));
 
     }
