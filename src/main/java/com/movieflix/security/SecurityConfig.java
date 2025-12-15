@@ -17,12 +17,16 @@ public class SecurityConfig {
     @Autowired
     private SecurityFilter securityFilter;
 
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.POST, "/movieflix/user").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/movieflix/user/auth").permitAll();
+                            .requestMatchers(HttpMethod.POST, "/movieflix/user/auth").permitAll()
+                            .requestMatchers("/swagger-ui/**",
+                                    "/v3/api-docs/**",
+                                    "/swagger-resources/**").permitAll();
 
                     auth.anyRequest().authenticated();
 

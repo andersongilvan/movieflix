@@ -5,6 +5,7 @@ import com.movieflix.domain.streaming.mapper.StreamingMapper;
 import com.movieflix.domain.streaming.request.StreamingRequest;
 import com.movieflix.domain.streaming.response.StreamingResponse;
 import com.movieflix.domain.streaming.services.RegisterStreamingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,10 @@ public class RegisterStreamingController {
     private RegisterStreamingService registerStreamingService;
 
     @PostMapping
+    @Tag(
+            name = "Register streaming",
+            description = "endpoint for register a streaming"
+    )
     public ResponseEntity<StreamingResponse> handler(@Valid @RequestBody StreamingRequest streamingRequest) {
         var streaming = StreamingMapper.toStreaming(streamingRequest);
 

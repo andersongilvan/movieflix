@@ -22,37 +22,46 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
 
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getServletPath();
+
+        return path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/swagger-resources")
+                || path.equals("/movieflix/user")
+                || path.equals("/movieflix/user/auth");
+    }
+
+
+
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
 
-        SecurityContextHolder.getContext().setAuthentication(null);
-
         String header = request.getHeader("Authorization");
 
-
-        if (header != null && header.startsWith("Bearer ")) {
-            var tokenData = tokenService.validateToken(header);
-
-            try {
-                request.setAttribute("name", tokenData.name());
-                request.setAttribute("UserId", tokenData.id());
-                System.out.println(tokenData);
-
-                UsernamePasswordAuthenticationToken auth
-                        = new UsernamePasswordAuthenticationToken(tokenData, null, Collections.emptyList());
-                SecurityContextHolder.getContext().setAuthentication(auth);
-            } catch (Exception ex) {
-                ex.getMessage();
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            }
+        if (header == null || !header.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            throw new RuntimeException("Invalid token");
 
         }
 
-        filterChain.doFilter(request, response);
+        var tokenData = tokenService.validateToken(header);
+        System.out.println(tokenData);
 
+        UsernamePasswordAuthenticationToken auth
+                = new UsernamePasswordAuthenticationToken(tokenData, null, Collections.emptyList());
+
+        SecurityContextHolder.getContext().setAuthentication(auth);
+
+        System.out.println("auth -> " + auth);
+
+        filterChain.doFilter(request, response);
     }
 }
 

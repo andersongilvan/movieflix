@@ -5,6 +5,7 @@ import com.movieflix.domain.category.CategoryMapper;
 import com.movieflix.domain.category.request.CategoryRequest;
 import com.movieflix.domain.category.response.CategoryResponse;
 import com.movieflix.domain.category.services.UpdateCategoryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,10 @@ public class UpdateCategoryController {
     private UpdateCategoryService updateCategoryService;
 
     @PutMapping("/{id}")
+    @Tag(
+            name = "Update category",
+            description = "Endpoint for update a category"
+    )
     public ResponseEntity<CategoryResponse> handler(@PathVariable Long id, @RequestBody @Valid CategoryRequest categoryRequest) {
 
         System.out.println("Request -> " + categoryRequest);

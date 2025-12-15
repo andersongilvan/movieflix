@@ -6,6 +6,7 @@ import com.movieflix.domain.movie.mapper.MovieMapper;
 import com.movieflix.domain.movie.request.MovieRequest;
 import com.movieflix.domain.movie.response.MovieResponse;
 import com.movieflix.domain.movie.service.RegisterMovieService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,10 @@ public class RegisterMovieController {
     private RegisterMovieService registerMovieService;
 
     @PostMapping
+    @Tag(
+            name = "Register movie",
+            description = "Endpoint for register a movie"
+    )
     public ResponseEntity<MovieResponse> handler(@Valid @RequestBody MovieRequest movieRequest) {
 
         System.out.println(movieRequest);

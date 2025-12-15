@@ -2,6 +2,7 @@ package com.movieflix.domain.movie.controller;
 
 
 import com.movieflix.domain.movie.service.DeleMovieService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,10 @@ public class DeleteMovieController {
     private DeleMovieService deleMovieService;
 
     @DeleteMapping("/{idMovie}")
+    @Tag(
+            name = "Delete movie",
+            description = "Endpoint for delete a movie"
+    )
     public ResponseEntity<Void>handler(@PathVariable Long idMovie) {
         deleMovieService.delete(idMovie);
 

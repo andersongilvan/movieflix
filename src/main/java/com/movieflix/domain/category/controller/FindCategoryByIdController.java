@@ -4,6 +4,7 @@ package com.movieflix.domain.category.controller;
 import com.movieflix.domain.category.CategoryMapper;
 import com.movieflix.domain.category.response.CategoryResponse;
 import com.movieflix.domain.category.services.FindCategoryByIdService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,10 @@ public class FindCategoryByIdController {
     private FindCategoryByIdService findCategoryByIdService;
 
     @GetMapping("/{id}")
+    @Tag(
+            name = "Find category by id",
+            description = "Endpoint for find a category by id"
+    )
     public ResponseEntity<CategoryResponse> handler(@PathVariable Long id) {
 
         var category = findCategoryByIdService.findCategoryById(id);

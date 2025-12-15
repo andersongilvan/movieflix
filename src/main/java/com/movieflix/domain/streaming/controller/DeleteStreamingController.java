@@ -2,6 +2,7 @@ package com.movieflix.domain.streaming.controller;
 
 
 import com.movieflix.domain.streaming.services.DeleteStreamingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,10 @@ public class DeleteStreamingController {
     private DeleteStreamingService deleteStreamingService;
 
     @DeleteMapping("/{id}")
+    @Tag(
+            name = "Delete streaming",
+            description = "Endpoint for delete a streaming"
+    )
     public ResponseEntity<Void> handler(@PathVariable Long id) {
 
         deleteStreamingService.delete(id);

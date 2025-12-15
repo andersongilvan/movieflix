@@ -5,6 +5,7 @@ import com.movieflix.domain.movie.entity.Movie;
 import com.movieflix.domain.movie.mapper.MovieMapper;
 import com.movieflix.domain.movie.response.MovieResponse;
 import com.movieflix.domain.movie.service.FindAllMoviesService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,10 @@ public class FindAllMoviesController {
     private FindAllMoviesService findAllMoviesService;
 
     @GetMapping
+    @Tag(
+            name = "Find all movies",
+            description = "Endpoint for list all movies"
+    )
     public ResponseEntity<List<MovieResponse>> handler() {
 
         List<Movie> movieList = findAllMoviesService.findAll();
