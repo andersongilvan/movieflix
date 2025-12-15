@@ -1,6 +1,7 @@
 package com.movieflix.security;
 
 
+import com.movieflix.domain.exceptions.InvalidTokenException;
 import com.movieflix.security.jwt.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -47,8 +48,8 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         if (header == null || !header.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
-            throw new RuntimeException("Invalid token");
-
+            System.out.println("Invalid Token");
+            return;
         }
 
         var tokenData = tokenService.validateToken(header);
